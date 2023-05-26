@@ -1,0 +1,18 @@
+{
+  "name": "ilmans/mvc-pattern",
+  "description": "mvc pattern PHP",
+  "type": "project",
+  "autoload": {
+    "psr-4": {
+      "core\\": "core/",
+      "app\\" : "app/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Ilman Sunanuddin",
+      "email": "ilmansunannudin2@gmail.com"
+    }
+  ],
+  "require": {}
+}
