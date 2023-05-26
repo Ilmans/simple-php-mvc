@@ -6,8 +6,9 @@ use core\Controller;
 class HomeController extends Controller {
     
 
-     public function index () {
-       echo 'ini index';
+     public function index ($id,$k) {
+       echo $id;
+       echo $k;
      }
 }
 

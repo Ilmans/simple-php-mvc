@@ -5,8 +5,10 @@ use core\Router;
 require_once '../vendor/autoload.php';
 
 
-
-Router::get('/',[HomeController::class,'index']);
+// using {params} if want to use parameter
+// ex : Router::get('/user/{id}'.[UserController::class,'show']);
+Router::get("/{id}/{name}",[HomeController::class,'index']);
+Router::get('/tes',[HomeController::class,"ah"]);
 
 Router::run();
 
