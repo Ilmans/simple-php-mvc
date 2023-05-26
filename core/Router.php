@@ -48,7 +48,9 @@ class Router
              $controller = $route['controller'];
              $function = $route['function'];
              if(class_exists($controller)){
-                
+                $object_controller = new $controller();
+                $object_controller->$function();
+                return;
              } else {
                 throw new ErrorException("Class " . $controller . " not exists");
              }
