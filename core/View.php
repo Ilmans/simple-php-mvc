@@ -11,7 +11,7 @@ class View {
 
        $view = dirname(__DIR__) . "/app/views/" . $view . ".php";
        if(is_readable($view)){
-         require $view;
+          require $view;
        } else {
         throw new ErrorException("View " . $view . " not found");
        }
