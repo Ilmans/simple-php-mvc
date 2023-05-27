@@ -6,9 +6,10 @@ use core\Controller;
 class HomeController extends Controller {
     
 
-     public function index ($id,$k) {
+     public function index ($id) {
+      echo 'hai';
        echo $id;
-       echo $k;
+       
      }
 }
 

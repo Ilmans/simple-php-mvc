@@ -37,12 +37,7 @@ class Router
 
     public static function run() : void
     {
-        $path = '/';
-        if (array_key_exists('PATH_INFO', $_SERVER)) {
-            $path = $_SERVER['PATH_INFO'];
-          
-        }
-       
+        $path = $_SERVER['PATH_INFO'] ?? '/';
         foreach (self::$routes as $route) {
   
            if(self::isMatch($path,$route['path'])){
@@ -68,24 +63,19 @@ class Router
 
 
   protected static function isMatch($uri, $routeRegistered) {
-    $uriParts = explode('/', rtrim($uri,'/'));
-    $routeParts = explode('/', $routeRegistered);
+    $uri = $uri === "/" ? $uri : rtrim($uri,"/");
+    $uriParts = explode("/",$uri);
+    $routeParts = explode("/",$routeRegistered);
 
-    // Check if the number of URI parts matches the number of route parts
-    if (count($uriParts) !== count($routeParts)) {
+    if(count($uriParts) !== count($routeParts)){
         return false;
     }
-
     for ($i = 0; $i < count($routeParts); $i++) {
         $routePart = $routeParts[$i];
         $uriPart = $uriParts[$i];
-
-        if (strpos($routePart, '{') === false && $routePart !== $uriPart) {
-            // Parts don't match
-            return false;
-        }
+        if($routePart !== $uriPart && !self::isWildCard($routePart)) return false;
+        if(self::isWildCard($routePart) && $uriPart === "") return false;
     }
-
     return true;
 }
 
@@ -97,15 +87,17 @@ protected static function getParams($uri, $routeRegistered) {
     for ($i = 0; $i < count($routeParts); $i++) {
         $routePart = $routeParts[$i];
         $uriPart = $uriParts[$i];
-
-        if (strpos($routePart, '{') !== false && strpos($routePart, '}') !== false) {
-            // Wildcard found
-            $wildcardName = trim($routePart, '{}');
+        if (self::isWildCard($routePart)) {
             array_push($params,$uriPart);
         }
     }
 
     return $params;
+}
+
+protected static function isWildCard($part)
+{
+        return (strpos($part, '{') !== false && strpos($part, '}') !== false);
 }
 
 
