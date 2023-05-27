@@ -7,7 +7,7 @@ require_once '../vendor/autoload.php';
 
 // using {params} if want to use parameter
 // ex : Router::get('/user/{id}'.[UserController::class,'show']);
-Router::get("/{id}",[HomeController::class,'index']);
+Router::get("/",[HomeController::class,'index']);
 Router::get('/tes',[HomeController::class,"ah"]);
 
 Router::run();
