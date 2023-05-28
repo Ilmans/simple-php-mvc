@@ -4,7 +4,7 @@ return
 [
   "username" => "root",
   "password" => "root",
-  "name" => "mvc",
+  "name" => "php_mvc",
   "host" => "localhost"
 ]
 ?>

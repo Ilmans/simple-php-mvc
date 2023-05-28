@@ -9,7 +9,6 @@ class HomeController extends Controller {
     
 
      public function index () {
-      echo Config::get('database.name');
        return View::render('home',[
         'user' => 'ilman'
        ]); 
