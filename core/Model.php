@@ -1,6 +1,7 @@
 <?php
 namespace core;
 
+use ErrorException;
 use PDO;
 use PDOException;
 
@@ -29,7 +30,7 @@ abstract class Model
             try {
                 $this->db = new PDO($dns, $username, $password);
             } catch (PDOException $e) {
-                die("Koneksi database gagal: " . $e->getMessage());
+                throw new ErrorException($e->getMessage());
             }
         }
 
